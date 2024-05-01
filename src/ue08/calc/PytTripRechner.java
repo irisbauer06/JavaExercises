@@ -6,7 +6,7 @@ import java.util.List;
 import ue08.data.PytTrip;
 
 /**
- *Rechnerklasse zum Affinden pythagoräischer Tripel
+ *Rechnerklasse zum Auffinden pythagoräischer Tripel
  * mit Hypothenuse kleiner gleich Obergrenze
  * @author iris06
  */

@@ -60,8 +60,15 @@ public class PytripGui extends javax.swing.JFrame
     jScrollPane1 = new javax.swing.JScrollPane();
     listenfeld = new javax.swing.JList<>();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Pythagoräische Tripel V0.1");
+    addWindowListener(new java.awt.event.WindowAdapter()
+    {
+      public void windowClosing(java.awt.event.WindowEvent evt)
+      {
+        onWindowClosing(evt);
+      }
+    });
     getContentPane().setLayout(new java.awt.BorderLayout(8, 8));
 
     pMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
@@ -257,6 +264,11 @@ public class PytripGui extends javax.swing.JFrame
   {//GEN-HEADEREND:event_onBeenden
     onX();
   }//GEN-LAST:event_onBeenden
+
+  private void onWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWindowClosing
+  {//GEN-HEADEREND:event_onWindowClosing
+   onX();
+  }//GEN-LAST:event_onWindowClosing
 
   private void onX()
   {

@@ -118,16 +118,18 @@ public class PytripGui extends javax.swing.JFrame
     gridBagConstraints.gridy = 4;
     pEingabe.add(jLabel4, gridBagConstraints);
 
+    tfErgebnisse.setEditable(false);
     tfErgebnisse.setColumns(10);
-    tfErgebnisse.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+    tfErgebnisse.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
     tfErgebnisse.setValue(0.00);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 2;
     pEingabe.add(tfErgebnisse, gridBagConstraints);
 
+    tfDauer.setEditable(false);
     tfDauer.setColumns(10);
-    tfDauer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+    tfDauer.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
     tfDauer.setValue(0.00);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
@@ -140,6 +142,8 @@ public class PytripGui extends javax.swing.JFrame
 
     pButton.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
 
+    btBerechnen.setBackground(new java.awt.Color(255, 255, 0));
+    btBerechnen.setForeground(new java.awt.Color(0, 0, 0));
     btBerechnen.setText("Berechnen");
     btBerechnen.addActionListener(new java.awt.event.ActionListener()
     {
@@ -150,6 +154,8 @@ public class PytripGui extends javax.swing.JFrame
     });
     pButton.add(btBerechnen);
 
+    btLoeschen.setBackground(new java.awt.Color(204, 204, 0));
+    btLoeschen.setForeground(new java.awt.Color(0, 0, 0));
     btLoeschen.setText("Löschen");
     btLoeschen.addActionListener(new java.awt.event.ActionListener()
     {
@@ -160,6 +166,8 @@ public class PytripGui extends javax.swing.JFrame
     });
     pButton.add(btLoeschen);
 
+    btBeenden.setBackground(new java.awt.Color(255, 153, 153));
+    btBeenden.setForeground(new java.awt.Color(0, 0, 0));
     btBeenden.setText("Beenden");
     btBeenden.addActionListener(new java.awt.event.ActionListener()
     {

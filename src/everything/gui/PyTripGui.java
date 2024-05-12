@@ -1,6 +1,10 @@
 package everything.gui;
 
+import everything.calc.Calc;
+import everything.data.PyTripListModel;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  *
@@ -26,7 +30,28 @@ public class PyTripGui extends javax.swing.JFrame
   
   @SuppressWarnings("unchecked")
   
-  
+  private class PyTripWorker extends SwingWorker<Calc, Object>
+  {
+    private final int obergrenze;
+
+    public PyTripWorker(int obergrenze)
+    {
+      this.obergrenze = obergrenze;
+    }
+
+    @Override
+    protected Calc doInBackground() throws Exception
+    {
+     return new Calc(obergrenze);
+    }
+
+    @Override
+    protected void done()
+    {
+      
+    }
+    
+  }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
@@ -183,12 +208,29 @@ public class PyTripGui extends javax.swing.JFrame
 
   private void onBerechnen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBerechnen
   {//GEN-HEADEREND:event_onBerechnen
-   
+    try
+    {
+      btBerechnen.setEnabled(false);
+      progressbar.setIndeterminate(true);
+      progressbar.setString("Load ...");
+      progressbar.setStringPainted(true);
+      loeschen();
+    
+    final int obergrenze = ((Number)spObergrenze.getValue()).intValue();
+    new PyTripWorker(obergrenze).execute();
+    }
+    catch (Exception ex)
+    {
+      JOptionPane.showMessageDialog(this, ex.getMessage(),
+        "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+    }
   }//GEN-LAST:event_onBerechnen
 
   private void loeschen()
   {
-    
+    tfDauer.setValue(0);
+    tfErgebnisse.setValue(0);
+    listenfeld.setModel(new PyTripListModel (new ArrayList<>()));
   }
   
   private void onBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBeenden
@@ -198,7 +240,7 @@ public class PyTripGui extends javax.swing.JFrame
 
   private void onLoeschen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onLoeschen
   {//GEN-HEADEREND:event_onLoeschen
-    
+    loeschen();
   }//GEN-LAST:event_onLoeschen
 
   private void onWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWindowClosing
@@ -270,7 +312,7 @@ public class PyTripGui extends javax.swing.JFrame
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
-  private javax.swing.JList<String> listenfeld;
+  private javax.swing.JList<everything.data.PyTrip> listenfeld;
   private javax.swing.JPanel pBefehle;
   private javax.swing.JPanel pButtons;
   private javax.swing.JPanel pEingabe;

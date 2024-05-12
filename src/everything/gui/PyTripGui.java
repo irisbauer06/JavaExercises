@@ -1,8 +1,11 @@
 package everything.gui;
 
 import everything.calc.Calc;
+import everything.data.PyTrip;
 import everything.data.PyTripListModel;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
@@ -48,7 +51,30 @@ public class PyTripGui extends javax.swing.JFrame
     @Override
     protected void done()
     {
+  
+      try
+      {
+        btBerechnen.setEnabled(true);
+        progressbar.setIndeterminate(false);
+        progressbar.setStringPainted(false);
+        final Calc rechner = get();
+        tfDauer.setValue(rechner.getMillis());
+        final List<PyTrip> pyTrips = rechner.getPyTrips();
+        tfErgebnisse.setValue(pyTrips.size());
+        listenfeld.setModel(new PyTripListModel(pyTrips));
+        pack();
+        
+      }
+      catch (InterruptedException ex)
+      {
       
+      }
+      catch (ExecutionException ex)
+      {
+        JOptionPane.showMessageDialog(PyTripGui.this, ex.getCause().getMessage(),
+          "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+      }
+
     }
     
   }
@@ -89,6 +115,9 @@ public class PyTripGui extends javax.swing.JFrame
 
     pMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
     pMain.setLayout(new java.awt.BorderLayout());
+
+    progressbar.setBackground(new java.awt.Color(0, 204, 102));
+    progressbar.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
     pMain.add(progressbar, java.awt.BorderLayout.SOUTH);
 
     pWest.setLayout(new java.awt.BorderLayout());
@@ -171,6 +200,7 @@ public class PyTripGui extends javax.swing.JFrame
     gridBagConstraints.gridy = 2;
     pEingabe.add(tfErgebnisse, gridBagConstraints);
 
+    tfDauer.setEditable(false);
     tfDauer.setColumns(10);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
@@ -195,6 +225,7 @@ public class PyTripGui extends javax.swing.JFrame
     pOst.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8), javax.swing.BorderFactory.createTitledBorder("Liste")));
     pOst.setLayout(new java.awt.BorderLayout());
 
+    listenfeld.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
     ScrollPane.setViewportView(listenfeld);
 
     pOst.add(ScrollPane, java.awt.BorderLayout.CENTER);

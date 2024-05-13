@@ -13,11 +13,12 @@ import ue08.data.PytTrip;
 public class PytTripRechner
 {
   //Eingangsgrößen
-  private final int obergrenze; // Maximale Lönge der Hypothenuse
+  private final int obergrenze; // Maximale Länge der Hypothenuse
   //Ausgangsgrößen
   private final List<PytTrip> pytTrips = new ArrayList<>();
   private long millis;
 
+  //Konstruktor
   public PytTripRechner(int obergrenze) throws Exception
   {
     this.obergrenze = obergrenze;

@@ -21,14 +21,25 @@ public class NivenRechner
     rechnen();
   }
 
-  private void isQuersumme()
+  private int quersumme(int num)
   {
-    
+    int sum = 0;
+    while(num != 0){
+      sum += num % 10;
+      num /= 10;
+    }
+    return sum;
   }
-  private void isNivenNumber()
+  
+  private int isNivenNumber(int num)
   {
-    
+    if(num % quersumme(num) == 0) {
+      return 1;
+    }
+    return 0;
   }
+  
+  
   private void rechnen()
   {
     

@@ -10,14 +10,18 @@ import java.util.List;
 public class NivenRechner
 {
   private final int obergrenze;
+  private final int untergrenze;
   //private final List<NivenNumber> nivenNumbers = new ArrayList<>();
   private long millis;
 
-  public NivenRechner(int obergrenze) throws Exception
+  public NivenRechner(int obergrenze, int untergrenze) throws Exception
   {
     this.obergrenze = obergrenze;
-    if(obergrenze<100)
-      throw new Exception("Obergrenze muss größer 100 sein!");
+    this.untergrenze = untergrenze;
+    if(untergrenze<100)
+      throw new Exception("Untergrenze muss größer 100 sein!");
+    if(obergrenze>=9999)
+      throw new Exception("Obergrenze unter 10000");
     rechnen();
   }
 

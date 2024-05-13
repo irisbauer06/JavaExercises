@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package perfektezahl.gui;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import perfektezahl.calc.Rechner;
+import perfektezahl.data.PerfekteZahl;
+import perfektezahl.data.PerfekteZahlListModel;
 
 /**
  *
@@ -10,13 +13,14 @@ package perfektezahl.gui;
  */
 public class PerfekteZahlGui extends javax.swing.JFrame
 {
-
+  private final List<PerfekteZahl> zahlen = new ArrayList<>();
   /**
    * Creates new form PerfekteZahlGui
    */
   public PerfekteZahlGui()
   {
     initComponents();
+    setLocationRelativeTo(null);
   }
 
   /**
@@ -28,23 +32,176 @@ public class PerfekteZahlGui extends javax.swing.JFrame
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
+    java.awt.GridBagConstraints gridBagConstraints;
+
+    pMain = new javax.swing.JPanel();
+    pWest = new javax.swing.JPanel();
+    pEingabe = new javax.swing.JPanel();
+    obergrenze = new javax.swing.JSpinner();
+    untergrenze = new javax.swing.JSpinner();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    tfErgebnisse = new javax.swing.JFormattedTextField();
+    jLabel3 = new javax.swing.JLabel();
+    pBefehle = new javax.swing.JPanel();
+    pButtons = new javax.swing.JPanel();
+    btBerechnen = new javax.swing.JButton();
+    btLoeschen = new javax.swing.JButton();
+    btBeenden = new javax.swing.JButton();
+    pOst = new javax.swing.JPanel();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    listenfeld = new javax.swing.JList<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("Perfekte Zahlen V.01");
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
-    );
+    pMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+    pMain.setLayout(new java.awt.BorderLayout());
+
+    pWest.setLayout(new java.awt.BorderLayout());
+
+    pEingabe.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8), javax.swing.BorderFactory.createTitledBorder("Ein -& Ausgabe")));
+    java.awt.GridBagLayout pEingabeLayout = new java.awt.GridBagLayout();
+    pEingabeLayout.columnWidths = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
+    pEingabeLayout.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0};
+    pEingabe.setLayout(pEingabeLayout);
+
+    obergrenze.setOpaque(true);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    pEingabe.add(obergrenze, gridBagConstraints);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    pEingabe.add(untergrenze, gridBagConstraints);
+
+    jLabel1.setText("Obere Grenze");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pEingabe.add(jLabel1, gridBagConstraints);
+
+    jLabel2.setText("Untere Grenze");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pEingabe.add(jLabel2, gridBagConstraints);
+
+    tfErgebnisse.setEditable(false);
+    tfErgebnisse.setColumns(10);
+    tfErgebnisse.setValue(0.00);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+    pEingabe.add(tfErgebnisse, gridBagConstraints);
+
+    jLabel3.setText("Gefundene Ergebnisse");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pEingabe.add(jLabel3, gridBagConstraints);
+
+    pWest.add(pEingabe, java.awt.BorderLayout.NORTH);
+
+    pBefehle.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8), javax.swing.BorderFactory.createTitledBorder("Buttons")));
+
+    pButtons.setLayout(new java.awt.GridLayout(0, 1));
+
+    btBerechnen.setText("Berechnen");
+    btBerechnen.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onBerechnen(evt);
+      }
+    });
+    pButtons.add(btBerechnen);
+
+    btLoeschen.setText("Löschen");
+    btLoeschen.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onLoeschen(evt);
+      }
+    });
+    pButtons.add(btLoeschen);
+
+    btBeenden.setText("Beenden");
+    btBeenden.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onBeenden(evt);
+      }
+    });
+    pButtons.add(btBeenden);
+
+    pBefehle.add(pButtons);
+
+    pWest.add(pBefehle, java.awt.BorderLayout.SOUTH);
+
+    pMain.add(pWest, java.awt.BorderLayout.LINE_START);
+
+    pOst.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8), javax.swing.BorderFactory.createTitledBorder("Perfekte Zahlen")));
+    pOst.setLayout(new java.awt.BorderLayout());
+
+    jScrollPane1.setViewportView(listenfeld);
+
+    pOst.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+    pMain.add(pOst, java.awt.BorderLayout.LINE_END);
+
+    getContentPane().add(pMain, java.awt.BorderLayout.CENTER);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void loeschen()
+  {
+    tfErgebnisse.setValue(0);
+    listenfeld.setModel(new PerfekteZahlListModel(new ArrayList<>()));
+  }
+  private void onBerechnen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBerechnen
+  {//GEN-HEADEREND:event_onBerechnen
+    try {
+        loeschen();
+        final int untergrenze = ((Number) this.untergrenze.getValue()).intValue();
+        final int obergrenze = ((Number) this.obergrenze.getValue()).intValue();
+
+        Rechner rechner = new Rechner(obergrenze, untergrenze);
+        zahlen.addAll(rechner.getPerfekteZahlen());
+        listenfeld.setModel(new PerfekteZahlListModel(zahlen));
+        tfErgebnisse.setValue(zahlen.size());
+    } catch (Exception ex) {
+        JOptionPane.showConfirmDialog(this, ex.getMessage(),
+                "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+    }
+  }//GEN-LAST:event_onBerechnen
+
+  private void onLoeschen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onLoeschen
+  {//GEN-HEADEREND:event_onLoeschen
+    loeschen();
+  }//GEN-LAST:event_onLoeschen
+
+  private void onBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBeenden
+  {//GEN-HEADEREND:event_onBeenden
+    onX();
+  }//GEN-LAST:event_onBeenden
+
+  private void onX()
+  {
+    if(JOptionPane.showConfirmDialog(this, "Wirklich beenden?", 
+      "Sicherheitsabfrage",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+      dispose();
+  }
   /**
    * @param args the command line arguments
    */
@@ -95,5 +252,22 @@ public class PerfekteZahlGui extends javax.swing.JFrame
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btBeenden;
+  private javax.swing.JButton btBerechnen;
+  private javax.swing.JButton btLoeschen;
+  private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JList<perfektezahl.data.PerfekteZahl> listenfeld;
+  private javax.swing.JSpinner obergrenze;
+  private javax.swing.JPanel pBefehle;
+  private javax.swing.JPanel pButtons;
+  private javax.swing.JPanel pEingabe;
+  private javax.swing.JPanel pMain;
+  private javax.swing.JPanel pOst;
+  private javax.swing.JPanel pWest;
+  private javax.swing.JFormattedTextField tfErgebnisse;
+  private javax.swing.JSpinner untergrenze;
   // End of variables declaration//GEN-END:variables
 }

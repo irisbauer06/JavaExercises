@@ -4,6 +4,8 @@
  */
 package nivennumber.gui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author iris06
@@ -53,6 +55,13 @@ public class NivenGui extends javax.swing.JFrame
     listenfeld = new javax.swing.JList<>();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    addWindowListener(new java.awt.event.WindowAdapter()
+    {
+      public void windowClosing(java.awt.event.WindowEvent evt)
+      {
+        onWindowClosing(evt);
+      }
+    });
 
     pMain.setLayout(new java.awt.BorderLayout());
     pMain.add(progressbar, java.awt.BorderLayout.SOUTH);
@@ -95,6 +104,7 @@ public class NivenGui extends javax.swing.JFrame
 
     tfNiventrue.setEditable(false);
     tfNiventrue.setColumns(10);
+    tfNiventrue.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 6;
@@ -173,6 +183,10 @@ public class NivenGui extends javax.swing.JFrame
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void loeschen()
+  {
+    
+  }
   private void onBerechnen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onBerechnen
   {//GEN-HEADEREND:event_onBerechnen
     // TODO add your handling code here:
@@ -188,6 +202,19 @@ public class NivenGui extends javax.swing.JFrame
     // TODO add your handling code here:
   }//GEN-LAST:event_onLoeschen
 
+  private void onWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWindowClosing
+  {//GEN-HEADEREND:event_onWindowClosing
+    // TODO add your handling code here:
+  }//GEN-LAST:event_onWindowClosing
+
+  private void onX()
+  {
+    if (JOptionPane.showConfirmDialog(this, "Wirklich beenden?",
+      "Sicherheitsabfrage",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+    dispose();
+  }
+  
+  
   /**
    * @param args the command line arguments
    */

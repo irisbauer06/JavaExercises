@@ -2,6 +2,7 @@ package nivennumber.calc;
 
 import java.util.ArrayList;
 import java.util.List;
+import nivennumber.data.NivenNumber;
 
 /**
  *
@@ -11,6 +12,7 @@ public class NivenRechner
 {
   private final int obergrenze;
   private final int untergrenze;
+  private final List<NivenNumber> nivenNumbers = new ArrayList<>();
   //private final List<NivenNumber> nivenNumbers = new ArrayList<>();
   private long millis;
 
@@ -43,15 +45,9 @@ public class NivenRechner
     return 0;
   }
   
-  
   private void rechnen()
   {
     
-  }
-  
-  //public List<NivenNumber> getNivenNumbers()
-  {
-    //return nivenNumbers;
   }
 
   public long getMillis()

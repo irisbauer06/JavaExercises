@@ -15,5 +15,17 @@ public class NivenListModel extends AbstractListModel<NivenNumber>
   {
     this.nivenNumbers = nivenNumbers;
   }
+
+  @Override
+  public int getSize()
+  {
+    return nivenNumbers.size();
+  }
+
+  @Override
+  public NivenNumber getElementAt(int index)
+  {
+    return nivenNumbers.get(index);
+  }
   
 }

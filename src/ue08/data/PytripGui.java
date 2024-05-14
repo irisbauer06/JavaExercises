@@ -105,6 +105,7 @@ public class PytripGui extends javax.swing.JFrame
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     pEingabe.add(spObergrenze, gridBagConstraints);
 
@@ -244,7 +245,14 @@ public class PytripGui extends javax.swing.JFrame
       progressBar.setStringPainted(true);
       loeschen();
       final int obergrenze = ((Number)spObergrenze.getValue()).intValue(); //Obergrenze auslesen  
-      new PytTripWorker(obergrenze).execute();
+      // new PytTripWorker(obergrenze).execute();
+    
+      final PytTripRechner rechner = new PytTripRechner(obergrenze); // ohne worker
+      tfDauer.setValue(rechner.getMillis());
+      final List<PytTrip> pytTrips = rechner.getPytTrips(); //Liste aus rechnerklasse holen
+      tfErgebnisse.setValue(pytTrips.size()); //anzahl der ergebnisse ausgeben
+      listenfeld.setModel (new PytTripListModel(pytTrips)); //neues listenmodell
+      pack();
     }
     catch (Exception ex)
     {

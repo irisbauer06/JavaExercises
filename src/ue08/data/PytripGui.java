@@ -240,9 +240,9 @@ public class PytripGui extends javax.swing.JFrame
     try
     {
       btBerechnen.setEnabled(false);
-      progressBar.setIndeterminate(true);
-      progressBar.setString("Sinking ...");
-      progressBar.setStringPainted(true);
+      //progressBar.setIndeterminate(true);
+      //progressBar.setString("Sinking ...");
+      //progressBar.setStringPainted(true);
       loeschen();
       final int obergrenze = ((Number)spObergrenze.getValue()).intValue(); //Obergrenze auslesen  
       // new PytTripWorker(obergrenze).execute();
@@ -252,6 +252,9 @@ public class PytripGui extends javax.swing.JFrame
       final List<PytTrip> pytTrips = rechner.getPytTrips(); //Liste aus rechnerklasse holen
       tfErgebnisse.setValue(pytTrips.size()); //anzahl der ergebnisse ausgeben
       listenfeld.setModel (new PytTripListModel(pytTrips)); //neues listenmodell
+      btBerechnen.setEnabled(true);
+      //progressBar.setIndeterminate(false);
+      //progressBar.setStringPainted(false);
       pack();
     }
     catch (Exception ex)

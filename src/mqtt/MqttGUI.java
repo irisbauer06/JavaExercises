@@ -23,6 +23,7 @@ public class MqttGUI extends javax.swing.JFrame
   {
     initComponents();
     initMQTT();
+    setLocationRelativeTo(null);
   }
 
   private void initMQTT()
@@ -32,7 +33,7 @@ public class MqttGUI extends javax.swing.JFrame
       String clientId = UUID.randomUUID().toString();
       System.out.println("Generated Client ID: " + clientId);
 
-      client = new MqttClient("tcp://localhost:1883", clientId); // Connect to local Mosquitto broker
+      client = new MqttClient("tcp://192.168.1.108:1883", clientId); // Connect to local Mosquitto broker
       MqttConnectOptions options = new MqttConnectOptions();
       options.setCleanSession(true);
       client.connect(options);

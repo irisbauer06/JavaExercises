@@ -26,19 +26,45 @@ public class FilmGui extends javax.swing.JFrame
   private void initComponents()
   {
 
+    pMain = new javax.swing.JPanel();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    jTable1 = new javax.swing.JTable();
+    jMenuBar1 = new javax.swing.JMenuBar();
+    jMenu1 = new javax.swing.JMenu();
+    jMenu2 = new javax.swing.JMenu();
+
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Filmverwaltung V0.1");
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
-    );
+    pMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+    pMain.setLayout(new java.awt.BorderLayout());
+
+    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][]
+      {
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null},
+        {null, null, null, null}
+      },
+      new String []
+      {
+        "Title 1", "Title 2", "Title 3", "Title 4"
+      }
+    ));
+    jScrollPane1.setViewportView(jTable1);
+
+    pMain.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+    getContentPane().add(pMain, java.awt.BorderLayout.CENTER);
+
+    jMenu1.setText("File");
+    jMenuBar1.add(jMenu1);
+
+    jMenu2.setText("Edit");
+    jMenuBar1.add(jMenu2);
+
+    setJMenuBar(jMenuBar1);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
@@ -93,5 +119,11 @@ public class FilmGui extends javax.swing.JFrame
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenu jMenu1;
+  private javax.swing.JMenu jMenu2;
+  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JTable jTable1;
+  private javax.swing.JPanel pMain;
   // End of variables declaration//GEN-END:variables
 }

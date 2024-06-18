@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package ue09.data;
 
 /**
@@ -10,5 +6,6 @@ package ue09.data;
  */
 public enum Genre
 {
-  
+  Action, DRAMA, THRILLER, WAR, SCIENCEFICTION, FANTASY, CRIME, BIOGRAPHY, ANIMATION,
+  DOCUMENTATION, HORROR, COMEDY, MUSIC, ROMANCE, WESTERN;
 }

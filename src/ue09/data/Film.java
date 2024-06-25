@@ -33,6 +33,7 @@ public class Film
     this.lizenz = lizenz;
     this.quality = quality;
     this.gesehen = gesehen;
+    this.erworbenAm = erworbenAm;
   }
 
   public int getId()

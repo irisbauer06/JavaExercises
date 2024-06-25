@@ -23,6 +23,12 @@ public class TableTestGui
       final JScrollPane scrollPane = new JScrollPane();
       scrollPane.setViewportView(table);
       frame.getContentPane().add(scrollPane);
+      
+      final TestTableModel model = new TestTableModel();
+      table.setModel(model);
+      
+      
+      
       frame.setVisible(true);
     }
     catch (Exception ex)

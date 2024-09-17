@@ -3,6 +3,7 @@ package ue09.gui;
 import java.util.ArrayList;
 import java.util.List;
 import ue09.data.Film;
+import ue09.data.Filme;
 
 /**
  *
@@ -10,8 +11,8 @@ import ue09.data.Film;
  */
 public class FilmGui extends javax.swing.JFrame
 {
-  private final List<Film> filme = new ArrayList<>();
-  private final FilmTableModel model = new FilmTableModel(filme);
+  private final Filme filme = new Filme();
+  private final FilmTableModel model = new FilmTableModel(filme.getFilme());
 
   /**
    * Creates new form FilmGui

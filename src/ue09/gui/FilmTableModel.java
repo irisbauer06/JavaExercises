@@ -53,7 +53,7 @@ public class FilmTableModel extends AbstractTableModel
                   film.getDauerInMinuten()/60,
                   film.getDauerInMinuten()%60);
       case  6 -> film.getFsk();
-      case  7 -> film.getLizenz();
+      case  7 -> film.getLizenz(); //TODO
       case  8 -> film.getQuality();
       case  9 -> film.isGesehen() ? "Ja" : "Nein";
       case 10 -> DateTimeFormatter.ofPattern("yyyy-MM-dd")

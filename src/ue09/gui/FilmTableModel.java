@@ -27,7 +27,7 @@ public class FilmTableModel extends AbstractTableModel
   @Override
   public int getRowCount()
   {
-    return 0;
+    return filme.size();
   }
 
   @Override
@@ -39,7 +39,14 @@ public class FilmTableModel extends AbstractTableModel
   @Override
   public Object getValueAt(int rowIndex, int columnIndex)
   {
-    final Film film = filme.get(rowIndex);
+    final Film film = filme.get(rowIndex); //"Richtigen" Film holen
+    switch (columnIndex)
+    {
+      case 0 -> { return film.getId(); }
+      case 1 -> { return film.getTitel(); }
+    }
+    
+    //TODO
     return "??";
   }
   

@@ -25,8 +25,6 @@ public class Filme
     );
   }
   
-  
-  
   public List<Film> getFilme()
   {
     return filme;

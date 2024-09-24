@@ -22,6 +22,7 @@ public class Film
   public Film(int id, String titel, String hauptdarsteller, Genre genre,
     int erscheinungsjahr, int dauerInMinuten, int fsk, Lizenz lizenz,
     Quality quality, boolean gesehen, LocalDate erworbenAm)
+    throws Exception
   {
     this.id = id;
     this.titel = titel;
@@ -34,7 +35,12 @@ public class Film
     this.quality = quality;
     this.gesehen = gesehen;
     this.erworbenAm = erworbenAm;
+    
+    if(titel.isBlank());
+      throw new Exception("Titel darf nicht leer sein!");
+      //TO DO
   }
+  
 
   public int getId()
   {

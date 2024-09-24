@@ -2,6 +2,8 @@ package ue09.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import ue09.data.Film;
 import ue09.data.Filme;
 
@@ -22,7 +24,8 @@ public class FilmGui extends javax.swing.JFrame
     initComponents();
     setLocationRelativeTo(null);
     tabelle.setModel(model);
-    pack();
+    setExtendedState(JFrame.MAXIMIZED_BOTH); //maximiert öffnen
+    //pack();
   }
 
   /**
@@ -38,12 +41,27 @@ public class FilmGui extends javax.swing.JFrame
     pMain = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
     tabelle = new javax.swing.JTable();
-    jMenuBar1 = new javax.swing.JMenuBar();
-    jMenu1 = new javax.swing.JMenu();
-    jMenu2 = new javax.swing.JMenu();
+    jmenu1 = new javax.swing.JMenuBar();
+    mDatei = new javax.swing.JMenu();
+    miDateiladen = new javax.swing.JMenuItem();
+    miSpeichern = new javax.swing.JMenuItem();
+    miSeperator = new javax.swing.JPopupMenu.Separator();
+    miBeenden = new javax.swing.JMenuItem();
+    mFilm = new javax.swing.JMenu();
+    miHinzufuegen = new javax.swing.JMenuItem();
+    miLoeschen = new javax.swing.JMenuItem();
+    miBearbeiten = new javax.swing.JMenuItem();
+    mExtras = new javax.swing.JMenu();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Filmverwaltung V0.1");
+    addWindowListener(new java.awt.event.WindowAdapter()
+    {
+      public void windowClosing(java.awt.event.WindowEvent evt)
+      {
+        onWindowClosing(evt);
+      }
+    });
 
     pMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
     pMain.setLayout(new java.awt.BorderLayout());
@@ -67,17 +85,97 @@ public class FilmGui extends javax.swing.JFrame
 
     getContentPane().add(pMain, java.awt.BorderLayout.CENTER);
 
-    jMenu1.setText("File");
-    jMenuBar1.add(jMenu1);
+    mDatei.setText("Datei");
 
-    jMenu2.setText("Edit");
-    jMenuBar1.add(jMenu2);
+    miDateiladen.setText("Datei laden");
+    miDateiladen.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        miDateiladenActionPerformed(evt);
+      }
+    });
+    mDatei.add(miDateiladen);
 
-    setJMenuBar(jMenuBar1);
+    miSpeichern.setText("Datei speichern");
+    mDatei.add(miSpeichern);
+    mDatei.add(miSeperator);
+
+    miBeenden.setText("Beenden");
+    miBeenden.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onDateiBeenden(evt);
+      }
+    });
+    mDatei.add(miBeenden);
+
+    jmenu1.add(mDatei);
+
+    mFilm.setText("Film");
+
+    miHinzufuegen.setText("Hinzufügen");
+    miHinzufuegen.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onFilmHinzufuegen(evt);
+      }
+    });
+    mFilm.add(miHinzufuegen);
+
+    miLoeschen.setText("Löschen");
+    mFilm.add(miLoeschen);
+
+    miBearbeiten.setText("Bearbeiten");
+    mFilm.add(miBearbeiten);
+
+    jmenu1.add(mFilm);
+
+    mExtras.setText("Extras");
+    jmenu1.add(mExtras);
+
+    setJMenuBar(jmenu1);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  private void miDateiladenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDateiladenActionPerformed
+  {//GEN-HEADEREND:event_miDateiladenActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_miDateiladenActionPerformed
+
+  private void onDateiBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onDateiBeenden
+  {//GEN-HEADEREND:event_onDateiBeenden
+    onX();
+  }//GEN-LAST:event_onDateiBeenden
+
+  private void onWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_onWindowClosing
+  {//GEN-HEADEREND:event_onWindowClosing
+    onX();
+  }//GEN-LAST:event_onWindowClosing
+
+  private void onFilmHinzufuegen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onFilmHinzufuegen
+  {//GEN-HEADEREND:event_onFilmHinzufuegen
+    final FilmDialog dlg = new FilmDialog(this,true); // Dialog objekt gebaut
+    dlg.setVisible(true); //Dialog sichtbar machen, modales Dialog
+    
+    if (dlg.pressedOK())
+    {
+      final Film film = dlg.getFilm(); //Dann Film abholen
+      // to do: Film an Collection anfügen & Tabelle aktualisieren
+    }
+    
+  }//GEN-LAST:event_onFilmHinzufuegen
+
+  private void onX()
+  {
+    if (JOptionPane.showConfirmDialog(
+    this, "Wirklich beenden?", "Sicherheitsabfrage",
+      JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+       dispose();
+  }
   /**
    * @param args the command line arguments
    */
@@ -128,10 +226,18 @@ public class FilmGui extends javax.swing.JFrame
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JMenu jMenu1;
-  private javax.swing.JMenu jMenu2;
-  private javax.swing.JMenuBar jMenuBar1;
   private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JMenuBar jmenu1;
+  private javax.swing.JMenu mDatei;
+  private javax.swing.JMenu mExtras;
+  private javax.swing.JMenu mFilm;
+  private javax.swing.JMenuItem miBearbeiten;
+  private javax.swing.JMenuItem miBeenden;
+  private javax.swing.JMenuItem miDateiladen;
+  private javax.swing.JMenuItem miHinzufuegen;
+  private javax.swing.JMenuItem miLoeschen;
+  private javax.swing.JPopupMenu.Separator miSeperator;
+  private javax.swing.JMenuItem miSpeichern;
   private javax.swing.JPanel pMain;
   private javax.swing.JTable tabelle;
   // End of variables declaration//GEN-END:variables

@@ -43,6 +43,7 @@ public class FilmDialog extends javax.swing.JDialog
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
+    java.awt.GridBagConstraints gridBagConstraints;
 
     jScrollPane1 = new javax.swing.JScrollPane();
     jPanel1 = new javax.swing.JPanel();
@@ -51,7 +52,29 @@ public class FilmDialog extends javax.swing.JDialog
     btUebernehmen = new javax.swing.JButton();
     btAbbrechen = new javax.swing.JButton();
     pContent = new javax.swing.JPanel();
+    jLID = new javax.swing.JLabel();
+    ftID = new javax.swing.JFormattedTextField();
+    jLtitel = new javax.swing.JLabel();
+    jLDarsteller = new javax.swing.JLabel();
+    ftTitel = new javax.swing.JFormattedTextField();
+    ftDarsteller = new javax.swing.JFormattedTextField();
+    jLGenre = new javax.swing.JLabel();
+    cmGenre = new javax.swing.JComboBox<>();
+    jLJahr = new javax.swing.JLabel();
+    ftJahr = new javax.swing.JFormattedTextField();
+    jLDauer = new javax.swing.JLabel();
+    jPanel2 = new javax.swing.JPanel();
+    spStunde = new javax.swing.JSpinner();
+    spMinute = new javax.swing.JSpinner();
+    jLFSK = new javax.swing.JLabel();
+    cmFSK = new javax.swing.JComboBox<>();
     jLabel1 = new javax.swing.JLabel();
+    cmLizenz = new javax.swing.JComboBox<>();
+    jLabel2 = new javax.swing.JLabel();
+    cmQuality = new javax.swing.JComboBox<>();
+    ichhabsgesehn = new java.awt.Checkbox();
+    label1 = new java.awt.Label();
+    jspErworben = new javax.swing.JSpinner();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Hinzufügen/Bearbeiten Film");
@@ -59,7 +82,7 @@ public class FilmDialog extends javax.swing.JDialog
     jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
     jPanel1.setLayout(new java.awt.BorderLayout());
 
-    pButton.setLayout(new java.awt.GridLayout());
+    pButton.setLayout(new java.awt.GridLayout(1, 0));
 
     btUebernehmen.setText("Übernehmen");
     btUebernehmen.addActionListener(new java.awt.event.ActionListener()
@@ -85,11 +108,169 @@ public class FilmDialog extends javax.swing.JDialog
 
     jPanel1.add(pSouth, java.awt.BorderLayout.SOUTH);
 
-    pContent.setLayout(new java.awt.GridBagLayout());
+    java.awt.GridBagLayout pContentLayout = new java.awt.GridBagLayout();
+    pContentLayout.columnWidths = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
+    pContentLayout.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
+    pContent.setLayout(pContentLayout);
 
-    jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-    jLabel1.setText("X");
-    pContent.add(jLabel1, new java.awt.GridBagConstraints());
+    jLID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+    jLID.setText("ID");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLID, gridBagConstraints);
+
+    ftID.setColumns(5);
+    ftID.setValue(0);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(ftID, gridBagConstraints);
+
+    jLtitel.setText("Titel");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLtitel, gridBagConstraints);
+
+    jLDarsteller.setText("Hauptdarsteller");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 4;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLDarsteller, gridBagConstraints);
+
+    ftTitel.setColumns(24);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 2;
+    pContent.add(ftTitel, gridBagConstraints);
+
+    ftDarsteller.setColumns(24);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 4;
+    pContent.add(ftDarsteller, gridBagConstraints);
+
+    jLGenre.setText("Genre");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 6;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLGenre, gridBagConstraints);
+
+    cmGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 6;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(cmGenre, gridBagConstraints);
+
+    jLJahr.setText("Erscheinungsjahr");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 8;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLJahr, gridBagConstraints);
+
+    ftJahr.setColumns(4);
+    ftJahr.setValue(0);
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 8;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(ftJahr, gridBagConstraints);
+
+    jLDauer.setText("Dauer");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 10;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLDauer, gridBagConstraints);
+
+    jPanel2.setDoubleBuffered(false);
+    jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+
+    spStunde.setModel(new javax.swing.SpinnerNumberModel(0, 0, 12, 1));
+    jPanel2.add(spStunde);
+
+    spMinute.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+    jPanel2.add(spMinute);
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 10;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jPanel2, gridBagConstraints);
+
+    jLFSK.setText("FSK");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 12;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLFSK, gridBagConstraints);
+
+    cmFSK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 12;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(cmFSK, gridBagConstraints);
+
+    jLabel1.setText("Lizenz");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 14;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLabel1, gridBagConstraints);
+
+    cmLizenz.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 14;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(cmLizenz, gridBagConstraints);
+
+    jLabel2.setText("Quality");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 16;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jLabel2, gridBagConstraints);
+
+    cmQuality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 16;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(cmQuality, gridBagConstraints);
+
+    ichhabsgesehn.setForeground(new java.awt.Color(255, 255, 255));
+    ichhabsgesehn.setLabel("Ich habs schon gesehn");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 20;
+    gridBagConstraints.gridwidth = 3;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(ichhabsgesehn, gridBagConstraints);
+
+    label1.setForeground(new java.awt.Color(255, 255, 255));
+    label1.setText("Erworben");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 18;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(label1, gridBagConstraints);
+
+    jspErworben.setModel(new javax.swing.SpinnerDateModel());
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 18;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    pContent.add(jspErworben, gridBagConstraints);
 
     jPanel1.add(pContent, java.awt.BorderLayout.CENTER);
 
@@ -188,11 +369,33 @@ public class FilmDialog extends javax.swing.JDialog
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btAbbrechen;
   private javax.swing.JButton btUebernehmen;
+  private javax.swing.JComboBox<String> cmFSK;
+  private javax.swing.JComboBox<String> cmGenre;
+  private javax.swing.JComboBox<String> cmLizenz;
+  private javax.swing.JComboBox<String> cmQuality;
+  private javax.swing.JFormattedTextField ftDarsteller;
+  private javax.swing.JFormattedTextField ftID;
+  private javax.swing.JFormattedTextField ftJahr;
+  private javax.swing.JFormattedTextField ftTitel;
+  private java.awt.Checkbox ichhabsgesehn;
+  private javax.swing.JLabel jLDarsteller;
+  private javax.swing.JLabel jLDauer;
+  private javax.swing.JLabel jLFSK;
+  private javax.swing.JLabel jLGenre;
+  private javax.swing.JLabel jLID;
+  private javax.swing.JLabel jLJahr;
   private javax.swing.JLabel jLabel1;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLtitel;
   private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
   private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JSpinner jspErworben;
+  private java.awt.Label label1;
   private javax.swing.JPanel pButton;
   private javax.swing.JPanel pContent;
   private javax.swing.JPanel pSouth;
+  private javax.swing.JSpinner spMinute;
+  private javax.swing.JSpinner spStunde;
   // End of variables declaration//GEN-END:variables
 }

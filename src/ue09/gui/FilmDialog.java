@@ -273,8 +273,7 @@ public class FilmDialog extends javax.swing.JDialog
     label1.setText("Erworben");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 18;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.gridy = 20;
     pContent.add(label1, gridBagConstraints);
 
     jspErworben.setModel(new javax.swing.SpinnerDateModel());
@@ -285,7 +284,7 @@ public class FilmDialog extends javax.swing.JDialog
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     pContent.add(jspErworben, gridBagConstraints);
 
-    cmGesehn.setText("Erworben");
+    cmGesehn.setText("Gesehen");
     cmGesehn.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -354,6 +353,7 @@ cmGesehn.isSelected(),
     cmQuality.setSelectedItem(film.getQuality());
     cmGesehn.setSelected(film.isGesehen());
     jspErworben.setValue(new Date(millis));
+    
   }
   private void onOK(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onOK
   {//GEN-HEADEREND:event_onOK

@@ -225,6 +225,16 @@ public class FilmGui extends javax.swing.JFrame
         "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
     else
     {
+      final Film alterFilm = filme.get(selIndex);
+      final FilmDialog dlg = new FilmDialog(this, true);
+      dlg.setFilm(alterFilm);
+      dlg.setVisible(true);
+      if (dlg.pressedOK())
+      {
+        final Film neuerFilm = dlg.getFilm(); //Film abholen
+        filme.set(selIndex,neuerFilm);
+        model.fireTableRowsUpdated(selIndex,selIndex); //Tabelle aktualisieren
+      }
       
     }
   }//GEN-LAST:event_onFilmBearbeiten

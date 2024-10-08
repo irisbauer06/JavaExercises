@@ -55,6 +55,11 @@ public class Filme
   {
     return filme.set(index, element);
   }
+
+  public Film get(int i)
+  {
+    return filme.get(i);
+  }
   
   
 }

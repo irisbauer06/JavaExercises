@@ -269,6 +269,7 @@ public class FilmDialog extends javax.swing.JDialog
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     pContent.add(cmQuality, gridBagConstraints);
 
+    label1.setForeground(new java.awt.Color(255, 255, 255));
     label1.setText("Erworben");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -284,7 +285,7 @@ public class FilmDialog extends javax.swing.JDialog
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     pContent.add(jspErworben, gridBagConstraints);
 
-    cmGesehn.setText("jCheckBox1");
+    cmGesehn.setText("Erworben");
     cmGesehn.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -331,8 +332,28 @@ public class FilmDialog extends javax.swing.JDialog
       
 cmGesehn.isSelected(),
       erworben
-      
     );
+  }
+  public void setFilm(Film film)
+  {
+    final long millis =
+      film.getErworbenAm()
+        .atStartOfDay(ZoneId.systemDefault())
+        .toInstant()
+        .toEpochMilli();
+      
+    ftID.setValue(film.getId());
+    ftTitel.setText(film.getTitel());
+    ftDarsteller.setText(film.getHauptdarsteller());
+    cmGenre.setSelectedItem(film.getGenre());
+    ftJahr.setValue(film.getErscheinungsjahr());
+    spStunde.setValue(film.getDauerInMinuten()/60);
+    spMinute.setValue(film.getDauerInMinuten()%60);
+    cmFSK.setSelectedItem(film.getFsk());
+    cmLizenz.setSelectedItem(film.getLizenz());
+    cmQuality.setSelectedItem(film.getQuality());
+    cmGesehn.setSelected(film.isGesehen());
+    jspErworben.setValue(new Date(millis));
   }
   private void onOK(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onOK
   {//GEN-HEADEREND:event_onOK

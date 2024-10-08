@@ -299,6 +299,9 @@
                 </Component>
                 <Component class="java.awt.Label" name="label1">
                   <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Erworben"/>
                   </Properties>
                   <Constraints>
@@ -324,7 +327,7 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="cmGesehn">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jCheckBox1"/>
+                    <Property name="text" type="java.lang.String" value="Erworben"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmGesehnActionPerformed"/>

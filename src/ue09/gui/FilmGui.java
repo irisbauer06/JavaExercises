@@ -136,6 +136,13 @@ public class FilmGui extends javax.swing.JFrame
     mFilm.add(miLoeschen);
 
     miBearbeiten.setText("Bearbeiten");
+    miBearbeiten.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onFilmBearbeiten(evt);
+      }
+    });
     mFilm.add(miBearbeiten);
 
     jmenu1.add(mFilm);
@@ -203,7 +210,24 @@ public class FilmGui extends javax.swing.JFrame
           ? String.format("Wirklich %d selektierte Filme löschen?", sel.length)
           : "Selektierten Film wirklich löschen?",
         "Sicherheitsabfrage", JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION)
+      {
+        for (int i=sel.length-1;i>=0;i--) //FIlme aus ArrayList löschen
+          filme.remove(sel[i]);
+        model.fireTableDataChanged();
+      }
   }//GEN-LAST:event_onFilmLoeschen
+
+  private void onFilmBearbeiten(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onFilmBearbeiten
+  {//GEN-HEADEREND:event_onFilmBearbeiten
+    final int selIndex = tabelle.getSelectedRow(); //Hol Index der selektierten Zeile
+    if (selIndex<0)
+      JOptionPane.showMessageDialog(this, "Bitte erst einen Film selektieren",
+        "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+    else
+    {
+      
+    }
+  }//GEN-LAST:event_onFilmBearbeiten
 
   private void onX()
   {

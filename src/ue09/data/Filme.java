@@ -16,17 +16,45 @@ public class Filme
   public Filme()
   {
     
-    //Testdaten hinzufügen
-    filme.add(
-    new Film(1,"Die glorreichen Sieben", "Yul Brynner", 
-      Genre.WESTERN, 1960, 128, 16, Lizenz.GELIEHEN,
-      Quality.HD_READY, true, LocalDate.of(2024, Month.SEPTEMBER, 17)
-    )
-    );
+    try
+    {
+      //Testdaten hinzufügen
+      filme.add(
+        new Film(1,"Die glorreichen Sieben", "Yul Brynner",
+          Genre.WESTERN, 1960, 128, 16, Lizenz.GELIEHEN,
+          Quality.HD_READY, true, LocalDate.of(2024, Month.SEPTEMBER, 17)
+        )
+      );
+    }
+    catch (Exception ex)
+    {
+    }
   }
   
   public List<Film> getFilme()
   {
     return filme;
   }
+
+  public int size()
+  {
+    return filme.size();
+  }
+
+  public boolean add(Film e)
+  {
+    return filme.add(e);
+  }
+
+  public Film remove(int index)
+  {
+    return filme.remove(index);
+  }
+
+  public Film set(int index, Film element)
+  {
+    return filme.set(index, element);
+  }
+  
+  
 }

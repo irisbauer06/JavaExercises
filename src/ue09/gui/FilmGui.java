@@ -126,6 +126,13 @@ public class FilmGui extends javax.swing.JFrame
     mFilm.add(miHinzufuegen);
 
     miLoeschen.setText("Löschen");
+    miLoeschen.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onFilmLoeschen(evt);
+      }
+    });
     mFilm.add(miLoeschen);
 
     miBearbeiten.setText("Bearbeiten");
@@ -164,10 +171,39 @@ public class FilmGui extends javax.swing.JFrame
     if (dlg.pressedOK())
     {
       final Film film = dlg.getFilm(); //Dann Film abholen
-      // to do: Film an Collection anfügen & Tabelle aktualisieren
+      filme.add(film);
+      model.fireTableRowsInserted(filme.size()-1, filme.size()-1);
     }
     
   }//GEN-LAST:event_onFilmHinzufuegen
+
+  private void onFilmLoeschen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onFilmLoeschen
+  {//GEN-HEADEREND:event_onFilmLoeschen
+    /*
+    final int selIndex = tabelle.getSelectedRow(); //Hol Index der selektierten Zeile
+    if (selIndex<0)
+      JOptionPane.showMessageDialog(this, "Bitte erst eine Zeile selektieren",
+        "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+    else
+      if (JOptionPane.showConfirmDialog(this, "FIlm wirklich löschen?","Sicherheitsabfrage", 
+        JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION)
+    {
+      filme.remove(selIndex); //Film am selecten Index aus der Arraylist löschen
+      model.fireTableRowsDeleted(selIndex, selIndex);
+    }*/
+    
+    final int[] sel = tabelle.getSelectedRows();
+    if (sel.length<1)
+      JOptionPane.showMessageDialog(this, "Bitte mindestens einen Film auswählen",
+        "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+    else
+      if (JOptionPane.showConfirmDialog(
+        this,
+        sel.length>1
+          ? String.format("Wirklich %d selektierte Filme löschen?", sel.length)
+          : "Selektierten Film wirklich löschen?",
+        "Sicherheitsabfrage", JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION)
+  }//GEN-LAST:event_onFilmLoeschen
 
   private void onX()
   {

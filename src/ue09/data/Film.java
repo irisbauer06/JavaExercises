@@ -36,9 +36,8 @@ public class Film
     this.gesehen = gesehen;
     this.erworbenAm = erworbenAm;
     
-    if(titel.isBlank());
+    if(titel.isBlank())
       throw new Exception("Titel darf nicht leer sein!");
-      //TO DO
   }
   
 

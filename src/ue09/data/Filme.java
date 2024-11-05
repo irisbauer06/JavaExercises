@@ -1,5 +1,6 @@
 package ue09.data;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.time.Month;
 import java.util.ArrayList;
@@ -67,6 +68,20 @@ public class Filme
   {
     for (Film film : filme)
       film.writeTo(writer);
+  }
+  public void readFrom(BufferedReader reader)
+    throws Exception
+  {
+    while (true)
+      try
+    {
+      filme.add(new Film(reader)); // Einen film lesen und anfügen
+    }
+    catch (Exception ex)
+    {
+      break;
+    }
+   
   }
   
   

@@ -77,7 +77,7 @@ public class Filme
     {
       filme.add(new Film(reader)); // Einen film lesen und anfügen
     }
-    catch (Exception ex)
+    catch (Exception ignore)
     {
       break;
     }

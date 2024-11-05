@@ -1,5 +1,6 @@
 package ue09.data;
 
+import java.io.BufferedWriter;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,13 @@ public class Filme
   public Film get(int i)
   {
     return filme.get(i);
+  }
+  
+  public void writeTo(BufferedWriter writer)
+    throws Exception
+  {
+    for (Film film : filme)
+      film.writeTo(writer);
   }
   
   

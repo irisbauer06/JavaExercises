@@ -1,6 +1,10 @@
 package ue09.data;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *Datenerhaltungklasse zur Repräsentation eines Films
@@ -38,6 +42,39 @@ public class Film
     
     if(titel.isBlank())
       throw new Exception("Titel darf nicht leer sein!");
+  }
+  public Film(BufferedReader reader) 
+    throws Exception
+  {
+    final String line = reader.readLine(); //Zeile aus dem Reader lesen
+    final String[] token = line.split(";");
+    id = Integer.parseInt(token[0]);
+    titel =token[1];
+    hauptdarsteller = token[2];
+    genre = Genre.valueOf(token[3]);
+    erscheinungsjahr = Integer.parseInt(token[4]);
+    dauerInMinuten = Integer.parseInt(token[5]);
+    fsk = Integer.parseInt(token[6]);
+    lizenz = Lizenz.valueOf(token[7]);
+    quality = Quality.valueOf(token[8]);
+    gesehen = Boolean.parseBoolean(token[9]);
+    erworbenAm =
+      LocalDate.parse(token[10],
+        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    
+  }
+  public void writeTo(BufferedWriter writer)
+    throws Exception
+  {
+    writer.write(
+      String.format( //Film schreibt sich selbst als CSV-Zeile in den Writer
+        "%d; %s; %s; %s; %d; %d; %d; %s; %s; %s",
+        id, titel,hauptdarsteller, genre.name(),
+        erscheinungsjahr,dauerInMinuten,fsk,
+        lizenz.name(), quality.name(),Boolean.toString(gesehen),
+        DateTimeFormatter.ofPattern("yyyy-MM-dd").format(erworbenAm)
+    ));
+    writer.newLine();
   }
   
 

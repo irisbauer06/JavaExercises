@@ -1,7 +1,12 @@
 package ue09.gui;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ue09.data.Film;
@@ -98,6 +103,13 @@ public class FilmGui extends javax.swing.JFrame
     mDatei.add(miDateiladen);
 
     miSpeichern.setText("Datei speichern");
+    miSpeichern.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        onDateiSpeichern(evt);
+      }
+    });
     mDatei.add(miSpeichern);
     mDatei.add(miSeperator);
 
@@ -238,6 +250,28 @@ public class FilmGui extends javax.swing.JFrame
       
     }
   }//GEN-LAST:event_onFilmBearbeiten
+
+  private void onDateiSpeichern(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onDateiSpeichern
+  {//GEN-HEADEREND:event_onDateiSpeichern
+   final JFileChooser chooser = new JFileChooser();
+   if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
+   {
+     final File file = chooser.getSelectedFile();
+       try (
+         final BufferedWriter writer =
+           new BufferedWriter(
+            new OutputStreamWriter(
+             new FileOutputStream(file), "utf8")))
+       {
+         filme.writeTo(writer);
+       }
+       catch (Exception e)
+       {
+         JOptionPane.showMessageDialog(this, e.getMessage(),
+           "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+       }
+   }
+  }//GEN-LAST:event_onDateiSpeichern
 
   private void onX()
   {

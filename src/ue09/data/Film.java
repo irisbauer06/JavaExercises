@@ -2,7 +2,7 @@ package ue09.data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
+//import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -68,7 +68,7 @@ public class Film
   {
     writer.write(
       String.format( //Film schreibt sich selbst als CSV-Zeile in den Writer
-        "%d; %s; %s; %s; %d; %d; %d; %s; %s; %s",
+        "%d;%s;%s;%s;%d;%d;%d;%s;%s;%s;%s",
         id, titel,hauptdarsteller, genre.name(),
         erscheinungsjahr,dauerInMinuten,fsk,
         lizenz.name(), quality.name(),Boolean.toString(gesehen),

@@ -14,7 +14,7 @@
                 <Property name="text" type="java.lang.String" value="Datei laden"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miDateiladenActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onDateiLaden"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miSpeichern">

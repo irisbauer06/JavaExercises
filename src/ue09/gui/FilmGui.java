@@ -1,14 +1,18 @@
 package ue09.gui;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import ue09.data.Film;
 import ue09.data.Filme;
 
@@ -97,7 +101,7 @@ public class FilmGui extends javax.swing.JFrame
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        miDateiladenActionPerformed(evt);
+        onDateiLaden(evt);
       }
     });
     mDatei.add(miDateiladen);
@@ -167,10 +171,34 @@ public class FilmGui extends javax.swing.JFrame
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void miDateiladenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDateiladenActionPerformed
-  {//GEN-HEADEREND:event_miDateiladenActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_miDateiladenActionPerformed
+  private void onDateiLaden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onDateiLaden
+  {//GEN-HEADEREND:event_onDateiLaden
+    final JFileChooser chooser = new JFileChooser();
+    chooser.addChoosableFileFilter(
+      new FileNameExtensionFilter("Film-Dateien", "csv", "txt"));
+    chooser.setAcceptAllFileFilterUsed(false);
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+    { //Wurde der Dialog mit "Übernehmen" beendet? ==> Ja
+      final File file = chooser.getSelectedFile();
+      try ( //Automatische Recourcenverwaltung
+          final BufferedReader reader =
+            new BufferedReader (
+              new InputStreamReader(
+                 new FileInputStream(file), "utf8"))
+        )
+      {
+        
+        filme.readFrom(reader); // Filme aus Datei lesen
+        model.fireTableDataChanged(); //Tabelle aktualisieren
+      }
+      catch (Exception e)
+      {
+        JOptionPane.showMessageDialog(this, e.getMessage(),
+          "Fehler aufgetreten", JOptionPane.ERROR_MESSAGE);
+      }
+
+    }
+  }//GEN-LAST:event_onDateiLaden
 
   private void onDateiBeenden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onDateiBeenden
   {//GEN-HEADEREND:event_onDateiBeenden
@@ -256,7 +284,10 @@ public class FilmGui extends javax.swing.JFrame
    final JFileChooser chooser = new JFileChooser();
    if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
    {
-     final File file = chooser.getSelectedFile();
+     File file = chooser.getSelectedFile();
+     final String path = file.getAbsolutePath();
+     if (!path.toLowerCase().endsWith(".csv"));
+     file = new File(path+".csv");
        try (
          final BufferedWriter writer =
            new BufferedWriter(
@@ -264,6 +295,9 @@ public class FilmGui extends javax.swing.JFrame
              new FileOutputStream(file), "utf8")))
        {
          filme.writeTo(writer);
+         JOptionPane.showMessageDialog(this, String.format
+          ("%d Filme erfolgreich gespeichert", filme.size()),
+           "Gespeichert", JOptionPane.ERROR_MESSAGE);
        }
        catch (Exception e)
        {

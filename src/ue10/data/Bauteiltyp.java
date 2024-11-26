@@ -6,11 +6,16 @@ package ue10.data;
  */
 public enum Bauteiltyp
 {
-  WIDERSTAND, TRANSISTOR, LED, KONDENSATOR, INDUKTIVITÄT, DIODE;
+  WIDERSTAND, TRANSISTOR, LED, DIODE;
   
   private String [] humanReadable =
   {
-    "Widerstand","Transistor","LED","Kondensator","Spule","Diode"
+    "Widerstand","Transistor","LED","Diode", "Spule"
+  };
+  
+  private String [] dimensions =
+  {
+    "Ohm", "B", "V", "V", "Henry"
   };
   
   @Override
@@ -18,6 +23,11 @@ public enum Bauteiltyp
   {
     
     return humanReadable[ordinal()];
+  }
+  
+  public String getDim()
+  {
+    return dimensions[ordinal()];
   }
   
 }

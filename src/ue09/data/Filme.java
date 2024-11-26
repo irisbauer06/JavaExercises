@@ -69,16 +69,19 @@ public class Filme
     for (Film film : filme)
       film.writeTo(writer);
   }
+  
   public void readFrom(BufferedReader reader)
     throws Exception
   {
+    filme.clear();
+    
     while (true)
       try
     {
       filme.add(new Film(reader)); // Einen film lesen und anfügen
     }
     catch (Exception ignore)
-    {
+    { 
       break;
     }
    

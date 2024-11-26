@@ -1,7 +1,5 @@
 package ue09.data;
 
-import org.eclipse.paho.client.mqttv3.util.Strings;
-
 /**
  *
  * @author iris06

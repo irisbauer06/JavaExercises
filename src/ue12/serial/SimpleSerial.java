@@ -1,4 +1,4 @@
-package ue12;
+package ue12.serial;
 
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.InputStream;

@@ -10,7 +10,7 @@ import ue12.serial.SimpleSerial;
 public class WriteRegisterTelegram extends AbstractModbusTelegram
 {
   public WriteRegisterTelegram(
-    SimpleSerial serial, int deviceAd, int functionCode, int regAd, int value)
+    SimpleSerial serial, int deviceAd, int regAd, int value)
   {
     super(serial, deviceAd, 6, calcXmtData(regAd, value),8);
   }
@@ -24,6 +24,7 @@ public class WriteRegisterTelegram extends AbstractModbusTelegram
     buffer[3] = getLoByte(value);
     return buffer;
    }
+  
   public static void main(String[] args)
   {
     try (final SimpleSerial serial = new SimpleSerial("ttyUSB0"))
@@ -43,4 +44,5 @@ public class WriteRegisterTelegram extends AbstractModbusTelegram
       ex.printStackTrace();
     }
   
+  }
 }

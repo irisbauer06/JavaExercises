@@ -24,8 +24,19 @@ public class ReadRegisterTelegram extends AbstractModbusTelegram
      buffer[1] = getLoByte(startAd);
      buffer[2] = getHiByte(quantityRegs);
      buffer[3] = getLoByte(quantityRegs);
-     //TODO
      return buffer;
    }
+   public static void main(String[] args)
+  {
+    try
+    {
+      
+    }
+    catch (Exception ex)
+    {
+      ex.printStackTrace();
+    }
+
+  }
   
 }

@@ -11,16 +11,18 @@ import ue12.serial.SimpleSerial;
 public class ReadRegisterTelegram extends AbstractModbusTelegram
 {
   private int startAd;
+  
   public ReadRegisterTelegram(
     SimpleSerial serial, int deviceAd, boolean useHoldingRegs,
-    int startAd, int quantityRegs, int lengthOfAnswer)
+    int startAd, int quantityRegs)
   {
     super(
     serial, deviceAd, useHoldingRegs ? 3 : 4,
     calcXmtData(startAd, quantityRegs), 5 + quantityRegs*2);
     this.startAd = startAd;
   }
-   private static byte[] calcXmtData(int startAd, int quantityRegs)
+  
+  private static byte[] calcXmtData(int startAd, int quantityRegs)
    {
      final byte[] buffer = new byte[4];
      buffer[0] = getHiByte(startAd);
@@ -53,6 +55,10 @@ public class ReadRegisterTelegram extends AbstractModbusTelegram
         new ReadRegisterTelegram(serial, 2, false, 0x30, 4);
       telegram.send();
       telegram.receive();
+      
+      final double temperatureInCelsius =
+        telegram.getRegister(0x30) / 256;
+      System.out.format("Temperatur: %.1f%n%n", temperatureInCelsius);
     }
     catch (Exception ex)
     {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package ue12.modbus;
 
 /**
@@ -10,5 +6,6 @@ package ue12.modbus;
  */
 public interface Telegram
 {
-  
+  void send() throws Exception;
+  byte[] receive() throws Exception;
 }

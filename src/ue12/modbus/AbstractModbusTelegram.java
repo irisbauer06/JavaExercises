@@ -11,11 +11,16 @@ import ue12.serial.SimpleSerial;
  */
 public class AbstractModbusTelegram implements Telegram
 {
-  private SimpleSerial serial;
+  private final SimpleSerial serial;
   private final int deviceAd, functionCode;
   private final byte[] xmtData;
   private final int lengthOfAnswer;
   private final byte[] rcvData;
+  
+  public byte[] getRcvData()
+  {
+    return rcvData;
+  }
     
   public AbstractModbusTelegram(
   SimpleSerial serial, int deviceAd, int functionCode, byte[] xmtData,int lengthOfAnswer)

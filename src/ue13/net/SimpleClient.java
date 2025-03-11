@@ -50,7 +50,9 @@ public class SimpleClient
   {
     try
     {
-      final String response = SimpleClient.sendRequestandReceiveResponse("www.htl-kaindorf.at", 80, "GET /index.html");
+      final String response = 
+        SimpleClient.sendRequestandReceiveResponse(
+          "127.0.0.1", 8020, "Das ist ein Test-Request");
       System.out.println(response);
     }
     catch (Exception ex)

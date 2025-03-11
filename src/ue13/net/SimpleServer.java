@@ -15,6 +15,7 @@ public class SimpleServer
 {
   private final int port;
   private ServerSocket serverSocket = null;
+  private HandleRequestThread handleRequestThread = null;
 
   public SimpleServer(int port)
   {
@@ -49,7 +50,8 @@ public class SimpleServer
       writer.write(response); //Befehl, Datei die geholt werden soll
       writer.newLine();
       writer.newLine();
-      writer.flush(); 
+      writer.flush();
+      socket.shutdownOutput(); //schließe senderichtung in der verbindung
   }
   
   private void handleRequest() throws Exception
@@ -61,6 +63,26 @@ public class SimpleServer
     sendResponse(socket, response);
     
   }
+  private class HandleRequestThread extends Thread //Thread als innerere Klasse
+  {
+    @Override
+    public void run()
+    {
+      while (!isInterrupted())
+        try
+      {
+        handleRequest();
+      }
+      catch (SocketTimeoutException ignore)
+      {
+        
+      }
+      catch (Exception ex)
+      {
+        ex.printStackTrace();
+      }  
+    }
+  }
   
   public void start() //beginnt auf Verbindungen zu warten
   throws IOException
@@ -68,13 +90,39 @@ public class SimpleServer
     if (serverSocket == null)
       serverSocket = new ServerSocket(port);   //man wartet auf Verbindung mit bestimmten Port
     //wenn es schon serverSocket auf diesem Port gibt, dann wird Exception geworfen
+      handleRequestThread = new HandleRequestThread();
+      handleRequestThread.start();
+      
   }
   
   public void stop()  //stoppen von warten auf Verbindungen
-  throws IOException
+  throws Exception
   {
+    handleRequestThread.interrupt(); //Bitte den Thread, sich selbst zu beenden
+    handleRequestThread.join(3_000); 
     serverSocket.close();
     serverSocket = null;
+  }
+  
+  public static void main(String[] args)
+  {
+    try
+    {
+      final SimpleServer server = new SimpleServer(8020); 
+      System.out.println("Server-Objekt erzeugt");
+      
+      server.start();
+      System.out.println("Server gestartet");
+   
+      Thread.sleep(30_000);
+      
+      server.stop();
+      System.out.println("Server gestoppt");
+    }
+    catch (Exception ex)
+    {
+      ex.printStackTrace();
+    }
   }
   
 }
